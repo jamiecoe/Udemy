@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import YTSearch from 'youtube-api-search';
@@ -18,7 +19,11 @@ class App extends Component {
       selectedVideo: null
     };
 
-    YTSearch({key: API_KEY, term: 'surfboards'}, (videos) => {
+    this.videoSearch('surboards');
+  }
+
+  videoSearch(term) {
+    YTSearch({key: API_KEY, term: term}, (videos) => {
       // this.setState({ videos }); //Same as writing: this.setState({ videos: vidoes });
       this.setState({
         videos: videos,
@@ -28,9 +33,13 @@ class App extends Component {
   }
 
   render() {
+    // use lodash.debounce function to put a 300ms delay on the term => this.videoSearch(term) function
+    // ie: you can only call new function videoSearch once every 300ms, it won't crash if you try but just will only work once within 300ms period
+    const videoSearch = _.debounce(term => {this.videoSearch(term)}, 300);
+
     return(
       <div>
-        <SearchBar />
+        <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           videos={this.state.videos}
