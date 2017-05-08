@@ -5,6 +5,11 @@ import React, { Component } from 'react';
 // You need this 'connect' function to connect React and Redux
 import { connect } from 'react-redux';
 
+// This is our action creator
+import { selectBook } from '../actions/index';
+// This function makes sure our action actually ends up flowing through all our reducers
+import { bindActionCreators } from 'redux';
+
 // For containers, we don't want to export the component anymore - we want to export the container (at the bottom of page)
 class BookList extends Component {
 
@@ -29,7 +34,19 @@ function mapStateToProps(state) {
   };
 }
 
+// Anything retured from this function will end up as props on the BookList
+// This is why we specifically pass in object into bindActionCreators
+function mapDispatchToProps() {
+  // Whenever selectBook is called, the result should be passed to all of our reducers
+  // bindActionCreators takes action creator (eg: selectBook) as first arguement
+  // then whenever selectBook gets called - run the result through 'dispatch' which sends it through all the reducers
+  return bindActionCreators({ selectBook: selectBook }, dispatch);
+}
+
 // If our application state ever changes, this conainer will instantly re-render with the new list of books, and assigned to this.props
 
 // Export container - passing in mapStateToProps function and BookList Component
-export default connect(mapStateToProps)(BookList);
+// Promote BookList from a component to a container
+// It needs to know about this new dispatch method 'selectBook'
+// Make it available as a prop
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);
