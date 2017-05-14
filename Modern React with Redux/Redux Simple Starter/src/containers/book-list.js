@@ -15,7 +15,14 @@ class BookList extends Component {
 
   renderList() {
     // Don't forget - you need unique value for 'key' attribute (we're using book.title)
-    return this.props.books.map((book) => <li key={book.title} className="list-group-item">{book.title}</li>);
+    return this.props.books.map((book) =>
+      <li
+        key={book.title}
+        onClick={() => this.props.selectBook(book)}
+        className="list-group-item">
+          {book.title}
+      </li>
+    );
   }
 
   render() {
@@ -35,8 +42,8 @@ function mapStateToProps(state) {
 }
 
 // Anything retured from this function will end up as props on the BookList
-// This is why we specifically pass in object into bindActionCreators
-function mapDispatchToProps() {
+// This is why we specifically pass in object into bindActionCreators, and what allows bindActionCreators to know when we have called selectBook
+function mapDispatchToProps(dispatch) {
   // Whenever selectBook is called, the result should be passed to all of our reducers
   // bindActionCreators takes action creator (eg: selectBook) as first arguement
   // then whenever selectBook gets called - run the result through 'dispatch' which sends it through all the reducers
