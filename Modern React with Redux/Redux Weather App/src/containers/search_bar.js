@@ -18,9 +18,14 @@ export default class SearchBar extends Component {
     });
   }
 
+  onFormSubmit(event) {
+    // This stops the <form> element automatically trying to submit search values to server when you press enter or submit button
+    event.preventDefault
+  }
+
   render() {
     return (
-      <form className="input-group">
+      <form onSubmit={this.onFormSubmit} className="input-group">
         <input
           placeholder="Get a five-day forecast in your favourite cities"
           className="form-control"
