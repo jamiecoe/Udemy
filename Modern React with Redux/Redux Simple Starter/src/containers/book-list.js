@@ -41,7 +41,7 @@ function mapStateToProps(state) {
   };
 }
 
-// Anything retured from this function will end up as props on the BookList
+// Anything retured from this function will end up as props on the BookList container
 // This is why we specifically pass in object into bindActionCreators, and what allows bindActionCreators to know when we have called selectBook
 function mapDispatchToProps(dispatch) {
   // Whenever selectBook is called, the result should be passed to all of our reducers
@@ -50,7 +50,7 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectBook: selectBook }, dispatch);
 }
 
-// If our application state ever changes, this conainer will instantly re-render with the new list of books, and assigned to this.props
+// If our application state ever changes, this container will instantly re-render with the new list of books, and assigned to this.props
 
 // Export container - passing in mapStateToProps function and BookList Component
 // Promote BookList from a component to a container
