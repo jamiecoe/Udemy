@@ -6,12 +6,58 @@
 
 \f0\fs24 \cf0 \
 \
+
+\b React
+\b0 \
 \
+- React is a javascript library that is used to produce HTML on the front-end\
 \
+- When we writing React, we\'92re writing individual components/views\
+\
+- Components/views are snippets of code that produce html\
+\
+- React library is for creating and nesting components, ReactDOM library is for putting those components on the page\
+\
+- Difference between Component Instance and a Component Class:\
+	- Component Instance - one instance of a component (e.g.: <App />)\
+	- Component Class - the template for creating instances e.g.: \
+		const App = function() \{ return <div></div>;\}  \
+\
+- JSX makes it really it easy to create instances from classes - just by writing <App />, Babel converts this into React.createElement(\'93App\'94, null), which creates an instance of App class \
+\
+- Functional components vs Class components\
+	- Functional components are literally just functions that return some JSX html\
+	- Class components are for when we want a component to have some kind of internal record keeping (i.e.: be aware of itself and what\'92s happened to it since rendering)\
+\
+- State in React \
+	- State is a plain javascript object that is used to record and react to user events\
+	- Each 
+\b class-based 
+\b0 component that we define has its own \'91state\'92 object\
+	- Whenever a component\'92s state changes, the component immediately re-renders and forces all of its children (if any) to re-render as well\
+	- Before we use state in a component, we need to initialise the state object,\
+	- To do this, we set the state property to be a plain JS object inside the class constructor function\
+	- Functional components do not have state, only class based!\
+\
+- A controlled component - where the state is used to set the value of something, not the other way around! (e.g.: setting input value with state)\
+\
+- Downwards data flow - only the most parent component in an application should be responsible for fetching data (e.g.: from an API)\
+\
+- You can put CSS classes on JSX html, however its called className to avoid naming conflicts (e.g.: <input className=\'93input-box\'94 />)\
+	 \
 \
 
 \b Redux\
 \
 
+\b0 - Redux - predictable state container for JS apps
+\b \
+
 \b0 - Reducers: a reducer is a function that returns a piece of the applications state\
-- Because our app can have many different pieces of state (i.e.: many different bits of data), we can have many different reducers}
+- Because our app can have many different pieces of state (i.e.: many different bits of data), we can have many different reducers\
+- Action Creators\
+- Redux Middlewares - functions that take an action and depending of it\'92s TYPE / PAYLOAD, it can let it pass / manipulate it / log it / stop it - before it reaches Reducers\
+\
+React Router\
+- History \
+}

@@ -34,6 +34,7 @@ class BookList extends Component {
   }
 }
 
+// If our application state ever changes, this container will instantly re-render with the new list of books, and assigned to this.props
 function mapStateToProps(state) {
   // Whatever is returned will show up as props inside of BookList (eg: this.props.books)
   return {
@@ -50,7 +51,6 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectBook: selectBook }, dispatch);
 }
 
-// If our application state ever changes, this container will instantly re-render with the new list of books, and assigned to this.props
 
 // Export container - passing in mapStateToProps function and BookList Component
 // Promote BookList from a component to a container
