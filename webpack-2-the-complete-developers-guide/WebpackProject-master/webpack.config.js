@@ -57,6 +57,14 @@ module.exports = {
     // we can pass in a reference to an exsisting index.html file to use as a template
     new HtmlWebpackPlugin({
       template: 'src/index.html'
+    }),
+    // Setup for deployment
+    // This will set environment to 'production' in deployed version
+    // useful for React library which uses process.env.NODE_ENV, and won't do so many error checks in production
+    // webpack.DefinePlugin is used to define window scoped variables that will be defined within our js output files
+    new webpack.DefinePlugin({
+      // need to stringify value, so it can be handled appropriately 
+      'process.env.NODE.ENV': JSON.stringify(process.env.NODE_ENV)
     })
   ]
 };
