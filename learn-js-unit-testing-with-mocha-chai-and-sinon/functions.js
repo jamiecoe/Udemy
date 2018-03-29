@@ -25,5 +25,25 @@ const isAliveError = (ping) => {
   return pingOneSucess && pingTwoSuccess && pingThreeSuccess;
 }
 
+const API = {
+  isAlive: () => {
+    try {  
+      console.log(this);
+          
+      const pingOneSucess = this.ping();      
+      const pingTwoSuccess = this.ping();
+      const pingThreeSuccess = this.ping();
 
-module.exports = { Add, isAlive, isAliveError };
+      return pingOneSucess && pingTwoSuccess && pingThreeSuccess;
+    } catch (e) {      
+      return new Error('ping threw exception');
+    }    
+  },
+  ping: () => {
+    return true;
+  }
+
+}
+
+
+module.exports = { Add, isAlive, isAliveError, API };

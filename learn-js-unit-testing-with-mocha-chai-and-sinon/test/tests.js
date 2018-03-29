@@ -1,4 +1,4 @@
-const { Add, isAlive, isAliveError } = require('../functions');
+const { Add, isAlive, isAliveError, API } = require('../functions');
 const { should, expect, assert } = require('chai');
 const sinon = require('sinon');
 should();
@@ -109,3 +109,34 @@ describe('isAlive tests', () => {
 
 
 });
+
+// Mocks are fake methods (like spies) and pre-programmed behaviour (like
+// stubs), BUT they can also have pre-programmed expectations as well. The whole
+// idea of a mock is that it will fail your tests if it isn't used as you would
+// expect it to be This makes it really useful for mocking out a particular
+// funciton within an object - we can place just that function under test and
+// check it's used exactly how we expect it to be
+describe('API tests', () => {
+  it('should call ping 3 times with isAlive function', () => {
+    // create a mocked version of API, which we can use to set expectations
+    const mockAPI = sinon.mock(API);
+    // inside expects(), pass in the name (as a string) of the function you want to set expectations for
+    const mockPing = mockAPI.expects('ping');
+
+    // we expect ping to be called exactly 3 times
+    mockPing.exactly(3);
+    // we expect ping to be called at least once and at most thrice 
+    mockPing.atLeast(1).atMost(3);
+
+    // you then call the isAlive function on the REAL API object
+    // the ping function will still be mocked out
+    API.isAlive();
+
+    // with mocks, you need to call a 'verify' method, which will check your assertions
+    mockAPI.verify();
+
+    // you need to call 'restore' function to restore the real 'ping' function
+    // as opposed to the mocked one 
+    mockAPI.restore();
+  })
+})
