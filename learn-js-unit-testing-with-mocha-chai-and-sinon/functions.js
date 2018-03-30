@@ -26,10 +26,8 @@ const isAliveError = (ping) => {
 }
 
 const API = {
-  isAlive: () => {
-    try {  
-      console.log(this);
-          
+  isAlive: function () {
+    try {
       const pingOneSucess = this.ping();      
       const pingTwoSuccess = this.ping();
       const pingThreeSuccess = this.ping();
@@ -39,10 +37,23 @@ const API = {
       return new Error('ping threw exception');
     }    
   },
-  ping: () => {
-    return true;
-  }
+  isAliveWithAddress: function (address) {
+    try {
+      const pingOneSucess = this.ping(address);      
+      const pingTwoSuccess = this.ping(address);
+      const pingThreeSuccess = this.ping(address);
 
+      return pingOneSucess //&& pingTwoSuccess && pingThreeSuccess;
+    } catch (e) {      
+      return new Error('ping threw exception');
+    }    
+  },
+  ping: function (address) {
+    return true;
+  },
+  killServer: function() {
+
+  }
 }
 
 

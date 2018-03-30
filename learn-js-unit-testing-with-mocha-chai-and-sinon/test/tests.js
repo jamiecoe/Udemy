@@ -100,7 +100,7 @@ describe('isAlive tests', () => {
 
     const pinger = sinon.stub();
 
-    // specify what pinger should return on each call
+    // specify that the pinger should throw an error
     pinger.throws(() => new Error());
     const error = isAliveError(pinger);
 
@@ -113,7 +113,8 @@ describe('isAlive tests', () => {
 // Mocks are fake methods (like spies) and pre-programmed behaviour (like
 // stubs), BUT they can also have pre-programmed expectations as well. The whole
 // idea of a mock is that it will fail your tests if it isn't used as you would
-// expect it to be This makes it really useful for mocking out a particular
+// expect it to be 
+// This makes it really useful for mocking out a particular
 // funciton within an object - we can place just that function under test and
 // check it's used exactly how we expect it to be
 describe('API tests', () => {
@@ -137,6 +138,31 @@ describe('API tests', () => {
 
     // you need to call 'restore' function to restore the real 'ping' function
     // as opposed to the mocked one 
+    mockAPI.restore();
+  })
+
+  it('should not call killServer when isAlive is called', () => {
+    const mockAPI = sinon.mock(API);
+    // We expect killServer never to be called
+    mockAPI.expects('killServer').never();
+
+    API.isAlive();
+
+    mockAPI.verify();
+    mockAPI.restore();
+  });
+
+  it('should ping the server with the address it is passed', () => {
+    const mockAPI = sinon.mock(API);
+    const address = '1.1.1.1';
+    // We expect the ping method to be called with exactly the address value
+    // A default mock only expects to be called once, so we need to add exactly(3)
+    // to specify that it should be called three times
+    mockAPI.expects('ping').withExactArgs(address).exactly(3);
+
+    API.isAliveWithAddress(address);
+
+    mockAPI.verify;
     mockAPI.restore();
   })
 })
