@@ -43,7 +43,7 @@ const API = {
       const pingTwoSuccess = this.ping(address);
       const pingThreeSuccess = this.ping(address);
 
-      return pingOneSucess //&& pingTwoSuccess && pingThreeSuccess;
+      return pingOneSucess && pingTwoSuccess && pingThreeSuccess;
     } catch (e) {      
       return new Error('ping threw exception');
     }    
@@ -55,6 +55,5 @@ const API = {
 
   }
 }
-
 
 module.exports = { Add, isAlive, isAliveError, API };
