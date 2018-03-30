@@ -52,3 +52,6 @@ Thumbs.db
 
 # enviroment variables
 *.env
+
+# vscode files
+.vscode
