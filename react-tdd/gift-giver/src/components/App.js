@@ -4,14 +4,29 @@ import { Button } from 'react-bootstrap';
 class App extends Component {
   constructor() {
     super();
-    this.state = { gifts: [] }
+    this.state = { gifts: [] };
+  }
+
+  addGift = () => {
+    const { gifts } = this.state;
+    const ids = gifts.map(gift => gift.id);
+    // Find the highest ID value
+    // If no ids in the array, set max_id to 0
+    const max_id = ids.length > 0 ? Math.max(...ids) : 0;
+    gifts.push({ id: max_id + 1 });
+
+    this.setState({ gifts });
   }
 
   render() {
     return (
       <div>
         <h2>Gift Giver</h2>
-        <Button className='btn-add'>Add Gift</Button>
+        <div className='gift-list'>
+          {this.state.gifts.map(gift => <div key={gift.id}></div>)}
+        </div>
+        <Button className='btn-add' onClick={this.addGift}>Add Gift</Button>
+
       </div>
     )
   }

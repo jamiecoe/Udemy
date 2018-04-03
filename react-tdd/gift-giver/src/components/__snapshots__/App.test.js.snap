@@ -21,13 +21,17 @@ ShallowWrapper {
         <h2>
           Gift Giver
         </h2>,
+        <div
+          className="gift-list"
+        />,
         <Button
           active={false}
           block={false}
           bsClass="btn"
           bsStyle="default"
-          classNamne="btn-add"
+          className="btn-add"
           disabled={false}
+          onClick={[Function]}
         >
           Add Gift
         </Button>,
@@ -49,6 +53,18 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [],
+          "className": "gift-list",
+        },
+        "ref": null,
+        "rendered": Array [],
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
         "nodeType": "class",
         "props": Object {
           "active": false,
@@ -56,8 +72,9 @@ ShallowWrapper {
           "bsClass": "btn",
           "bsStyle": "default",
           "children": "Add Gift",
-          "classNamne": "btn-add",
+          "className": "btn-add",
           "disabled": false,
+          "onClick": [Function],
         },
         "ref": null,
         "rendered": "Add Gift",
@@ -76,13 +93,17 @@ ShallowWrapper {
           <h2>
             Gift Giver
           </h2>,
+          <div
+            className="gift-list"
+          />,
           <Button
             active={false}
             block={false}
             bsClass="btn"
             bsStyle="default"
-            classNamne="btn-add"
+            className="btn-add"
             disabled={false}
+            onClick={[Function]}
           >
             Add Gift
           </Button>,
@@ -104,6 +125,18 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [],
+            "className": "gift-list",
+          },
+          "ref": null,
+          "rendered": Array [],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
           "nodeType": "class",
           "props": Object {
             "active": false,
@@ -111,8 +144,9 @@ ShallowWrapper {
             "bsClass": "btn",
             "bsStyle": "default",
             "children": "Add Gift",
-            "classNamne": "btn-add",
+            "className": "btn-add",
             "disabled": false,
+            "onClick": [Function],
           },
           "ref": null,
           "rendered": "Add Gift",
