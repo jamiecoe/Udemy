@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import Gift from './Gift';
+import { max_number } from '../helper';
 
 class App extends Component {
   constructor() {
@@ -10,11 +11,8 @@ class App extends Component {
 
   addGift = () => {
     const { gifts } = this.state;
-    const ids = gifts.map(gift => gift.id);
-    // Find the highest ID value
-    // If no ids in the array, set max_id to 0
-    const max_id = ids.length > 0 ? Math.max(...ids) : 0;
-    gifts.push({ id: max_id + 1 });
+    const ids = gifts.map(gift => gift.id);    
+    gifts.push({ id: max_number(ids) + 1 });
 
     this.setState({ gifts });
   }
