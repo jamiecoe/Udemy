@@ -3,8 +3,6 @@ import * as constants from '../actions/constants';
 // That way, it will persit even when refreshing
 import { read_cookie, bake_cookie } from 'sfcookies';
 
-const BALANCE_COOKIE = 'BALANCE_COOKIE'; 
-
 const balance = (state = 0, action) => {
   let balance;
   
@@ -21,12 +19,12 @@ const balance = (state = 0, action) => {
     default:
       // read_cookie is function that will try to read a cookie based on string that's passed in
       // need to make sure that we convert value of read_cookie(BALANCE_COOKIE) to a number, or if it's a falsy value then just use state
-      balance = parseInt(read_cookie(BALANCE_COOKIE)) || state;
+      balance = parseInt(read_cookie(constants.BALANCE_COOKIE)) || state;
       break;
   };
   
   // bake_cookie will create or update a cookie based on it's name and a value to pass in
-  bake_cookie(BALANCE_COOKIE, balance);
+  bake_cookie(constants.BALANCE_COOKIE, balance);
 
   return balance;
 };
