@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deposit, withdraw } from '../actions/balance';
 
+// In order to test the unconnected 'Wallet' component, we also export the component class,
+// As well as 'export default' at the bottom for the Redux connected component
 export class Wallet extends Component {
   constructor() {
     super();

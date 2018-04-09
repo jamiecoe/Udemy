@@ -1,5 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
+// We can't test the Redux connected Wallet component, so we also export the unconnected class Wallet component
+// This is what we're importing here
 import { Wallet } from "./Wallet";
 
 describe("Wallet", () => {
