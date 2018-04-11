@@ -14,6 +14,24 @@ module.exports = {
         test: /\.js$/,
 				use: 'babel-loader',
 				exclude: ['node_modules']
+			},
+			{
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+			},
+			{
+        test: /\.(jpe?g|png|gif|svg)$/,
+        use: [
+          // remember loaders are run from end to beginning of array
+          // object instead of string for additional options
+          {
+            loader: 'url-loader',
+            options: { limit: 40000 }
+            // if image is less than 40,000 bytes, include it into bundle.js
+            // Otherwise, save it as a seperate file
+          },
+          'image-webpack-loader' // image-webpack-loader compresses file size of image
+        ]
       }
 		]
 	},
