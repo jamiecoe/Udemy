@@ -16,6 +16,7 @@ describe("Loot", () => {
     const mockFetchBitcoin = jest.fn();
     // using beforeEach() seems to isolate the new rendered component (eg: `loot = mount(<Loot {...props} />)`) to this block of tests
     beforeEach(() => {
+      // you need `disableLifecycleMethods: true` in setupTest.js order to assign a value to props
       props.fetchBitcoin = mockFetchBitcoin;
       // mounting component instead of shallow render, so we can test lifecycle methods
       loot = mount(<Loot {...props} />);
