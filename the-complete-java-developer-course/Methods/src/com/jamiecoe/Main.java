@@ -32,4 +32,5 @@ public class Main {
         else if (score >= 100) return 3;
         else return 4;
     }
+
 }
