@@ -10,7 +10,7 @@ public class Main {
 
         calculateScore();
 
-        calcFeetAndInchesToCentimeters(15);
+        calcFeetAndInchesToCentimeters(157);
     }
 
     public static int calculateScore(String playerName, int score) {
@@ -39,7 +39,11 @@ public class Main {
         boolean isInchesValid = inches >= 0 && inches <= 12;
 
         if (isFeetValid && isInchesValid) {
-            return ((feet * 12) * 2.54) + (inches * 2.54);
+            double cm = ((feet * 12) * 2.54) + (inches * 2.54);
+            System.out.println(cm + " cm");
+            return cm;
+        } else {
+            System.out.println("Invalid input");
         }
 
         return -1;
@@ -49,12 +53,12 @@ public class Main {
         boolean isInchesValid = inches >= 0;
 
         if (isInchesValid) {
-            int feet = (int)(inches / 12);
+            double feet = (int)(inches / 12);
             double remainingInches = inches % 12;
             System.out.println(feet);
             System.out.println(remainingInches);
 
-            System.out.println(calcFeetAndInchesToCentimeters((double) feet, remainingInches));
+            calcFeetAndInchesToCentimeters(feet, remainingInches);
 
         }
 
