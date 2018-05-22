@@ -3,7 +3,7 @@ package com.jamiecoe;
 public class Main {
 
     public static void main(String[] args) {
-	    printDayOfTheWeek(20);
+
     }
 
     public static void printDayOfTheWeek(int day) {
@@ -34,7 +34,5 @@ public class Main {
                 break;
         }
     }
-
-
 
 }
