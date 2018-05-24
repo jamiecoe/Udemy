@@ -10,8 +10,15 @@ public class Main {
 
 
 	    Monitor monitor = new Monitor("27inch Beast", "acer", 27, new Resolution(2540, 1440));
+
 	    Motherboard motherboard = new Motherboard("BJ-200", "Asus", 4, 6, "v2.44");
 
 	    PC pc = new PC(theCase, monitor, motherboard);
+
+	    Bedroom bedroom = new Bedroom(pc);
+
+	    String bedFrameMaterial = bedroom.getBedFrameMaterial();
+
+		System.out.println(bedFrameMaterial);
     }
 }
