@@ -33,9 +33,10 @@ public class Main {
 
 		// Here we are using encapsulation
 		// Health can only be accessed and changed with Player methods
+		// We have control over whats accessible in Main, and can easily change field names
 
 		EnhancedPlayer player = new EnhancedPlayer("Jamie", 50, "stick");
-		System.out.println("initial health is " + player.getHitPoints());
+		System.out.println("initial health is " + player.getHeath());
 
 	}
 }
