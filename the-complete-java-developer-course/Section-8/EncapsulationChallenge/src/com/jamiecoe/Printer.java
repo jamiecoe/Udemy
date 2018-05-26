@@ -4,15 +4,17 @@ public class Printer {
     private int tonerPercentageLevel;
     private int printedPages;
     private boolean duplexPrinter;
+    private int tonerRatePerpage;
 
     public Printer(boolean duplexPrinter) {
         this.duplexPrinter = duplexPrinter;
         this.tonerPercentageLevel = 100;
         this.printedPages = 0;
+        this.tonerRatePerpage = 2;
     }
 
-    public void fillToner(int newTonerPercent) {
-        tonerPercentageLevel += newTonerPercent;
+    public void fillToner(int additionalTonerPercent) {
+        tonerPercentageLevel += additionalTonerPercent;
 
         if (tonerPercentageLevel > 100) {
             tonerPercentageLevel = 100;
@@ -25,15 +27,16 @@ public class Printer {
     public void printPage(int newPages) {
 
         if (duplexPrinter) {
-            int newDoublePages = newPages % 2;
+            int newDoublePages = newPages / 2 + (newPages % 2);
             printedPages += newDoublePages;
         } else {
             printedPages += newPages;
         }
 
-        tonerPercentageLevel -= 2 * newPages;
+        tonerPercentageLevel -= tonerRatePerpage * newPages;
 
         System.out.println("Total number of printed pages = " + printedPages);
+
         if (tonerPercentageLevel <= 0) {
             System.out.println("Toner empty, needs refilling");
         } else {
