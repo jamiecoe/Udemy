@@ -1,5 +1,6 @@
 package com.jamiecoe;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -8,14 +9,30 @@ public class Main {
 
     public static void main(String[] args) {
 
+        int[] myIntArray = getIntegers(5);
+
+        printArray(sortArray(myIntArray));
     }
 
     public static int[] sortArray(int[] array) {
-        int[] sortedArray = new int[array.length];
+        int[] sortedArray = Arrays.copyOf(array, array.length);
+        boolean stillUnsorted = true;
+        int tempInt;
 
+        while (stillUnsorted) {
+            stillUnsorted = false;
+            for (int i = 0; i < sortedArray.length - 1; i++) {
+                if (sortedArray[i] < sortedArray[i + 1]) {
+                    tempInt = sortedArray[i];
+                    sortedArray[i] = sortedArray[i + 1];
+                    sortedArray[i + 1] = tempInt;
+                    stillUnsorted = true;
+                }
+            }
 
+        }
 
-
+        return sortedArray;
     }
 
     public static void printArray(int[] array) {
@@ -24,8 +41,8 @@ public class Main {
         }
     }
 
-    public static int[] getIntegers(int number) {
-        int[] values = new int[number];
+    public static int[] getIntegers(int capacity) {
+        int[] values = new int[capacity];
 
         for (int i = 0; i < values.length; i++) {
             values[i] = scanner.nextInt();
