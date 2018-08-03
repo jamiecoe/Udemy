@@ -19,6 +19,24 @@ public class Main {
 
 	    String bedFrameMaterial = bedroom.getBedFrameMaterial();
 
-		System.out.println(bedFrameMaterial);
+//		System.out.println(bedFrameMaterial);
     }
+
+    public static boolean isPerfectNumber(int num) {
+    	if (num < 1) {
+			return false;
+		} else {
+			int factorCounter = 1;
+			int perfectNumberTotal = 0;
+
+    		while (factorCounter <= num * 0.5) {
+    			if (num % factorCounter == 0) {
+					perfectNumberTotal += factorCounter;
+				}
+				factorCounter++;
+			}
+
+			return num == factorCounter;
+		}
+	}
 }
