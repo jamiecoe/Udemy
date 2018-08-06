@@ -55,3 +55,6 @@ Thumbs.db
 
 # vscode files
 .vscode
+
+# Intellij settings
+.idea
