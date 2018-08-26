@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    // Scanner and System.in allows you to input arguements into your program
+    // Scanner and System.in allows you to input arguments into your program
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {

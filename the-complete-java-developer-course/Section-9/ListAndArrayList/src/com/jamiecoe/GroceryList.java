@@ -13,6 +13,10 @@ public class GroceryList {
         groceryList.add(item);
     }
 
+    public ArrayList<String> getGroceryList() {
+        return groceryList;
+    }
+
     public void printGroceryList() {
         System.out.println("size = " + groceryList.size());
         for (int i = 0; i < groceryList.size(); i++) {
@@ -21,27 +25,46 @@ public class GroceryList {
         }
     }
 
-    public void modifyGroceryItem(int position, String newItem) {
+    public void modifyGroceryItem(String item, String newItem) {
+        int index = findItem(item);
+
+        if (index >= 0) {
+            modifyGroceryItem(index, newItem);
+        } else {
+            System.out.println(item + " does not exist in shopping list");
+        }
+    }
+
+    private void modifyGroceryItem(int position, String newItem) {
         // use .set(index, newValue) to update a value at a particular postion
         groceryList.set(position, newItem);
     }
 
-    public void removeGroceryItem(int position) {
+    public void removeGroceryItem(String item) {
+        int index = findItem(item);
+
+        if (index >= 0) {
+            removeGroceryItem(index);
+        } else {
+            System.out.println(item + " does not exist in shopping list");
+        }
+    }
+
+    private void removeGroceryItem(int position) {
         // remove an item from an ArrayList with .remove(index)
         groceryList.remove(position);
     }
 
-    public String findItem(String searchItem) {
+    private int findItem(String searchItem) {
         // returns boolean for whether ArrayList contains value
         // boolean exists = groceryList.contains(searchItem);
 
         // returns position of value, or -1 if value isn't present
-        int position = groceryList.indexOf(searchItem);
+        return groceryList.indexOf(searchItem);
+    }
 
-        if (position >= 0) {
-            return groceryList.get(position);
-        }
-
-        return null;
+    public boolean onFile(String searchItem) {
+        int index = findItem(searchItem);
+        return index >= 0;
     }
 }
