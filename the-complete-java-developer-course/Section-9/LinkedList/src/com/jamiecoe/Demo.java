@@ -114,6 +114,7 @@ public class Demo {
                     } else {
                         System.out.println("reached start of list");
                     }
+                    break;
             }
         }
     }
