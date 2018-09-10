@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class Bank {
     private String name;
-    private ArrayList<Branch> branches = new ArrayList<Branch>();
+    private ArrayList<Branch> branches;
 
     public Bank(String name) {
         this.name = name;
+        branches = new ArrayList<Branch>();
     }
 
     public String getName() {
