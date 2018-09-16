@@ -1,18 +1,19 @@
 package com.jamiecoe;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
 
 public class Playlist {
-    private LinkedList<Song> playlist;
+    private List<Song> playlist;
     private ListIterator<Song> playlistIterator;
 
     public Playlist() {
         this.playlist = new LinkedList<Song>();
     }
 
-    public LinkedList<Song> getPlaylist() {
+    public List<Song> getPlaylist() {
         return playlist;
     }
 

@@ -2,6 +2,9 @@ package com.jamiecoe;
 
 import java.util.Scanner;
 
+// LinkedLists and ArrayLists uses the List interface in Java
+// So we can also use List as a datatype to cover both types of lists
+
 public class Main {
 
     private static Scanner scanner = new Scanner(System.in);
