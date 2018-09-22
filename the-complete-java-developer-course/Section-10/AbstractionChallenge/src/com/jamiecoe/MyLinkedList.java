@@ -10,7 +10,7 @@ public class MyLinkedList implements NodeList {
 
     @Override
     public ListItem getRoot() {
-        return null;
+        return this.root;
     }
 
     @Override
@@ -64,11 +64,59 @@ public class MyLinkedList implements NodeList {
 
     @Override
     public boolean removeItem(ListItem item) {
+        if (this.root == null) {
+            System.out.println("Your list is empty");
+            return false;
+        }
+
+        if (item != null) {
+            System.out.println("Deleting " + item.getValue());
+        }
+
+        ListItem currentItem = this.root;
+
+        while (currentItem != null) {
+            if (currentItem.compareTo(item) == 0) {
+
+                if (currentItem.previous() != null) {
+                    currentItem.next().setPrevious(currentItem.previous());
+                } else {
+                    this.root = currentItem.next();
+                }
+
+                if (currentItem.next() != null) {
+                    currentItem.next().setPrevious(currentItem.previous());
+                }
+
+                return true;
+            } else {
+                currentItem = currentItem.next();
+            }
+        }
+
+        System.out.println(item.getValue() + " does not exist in your list");
         return false;
     }
 
     @Override
     public void traverse(ListItem root) {
+//        if (root == null) {
+//            System.out.println("The list is empty");
+//        } else {
+//            while (root != null) {
+//                System.out.println(root.getValue());
+//                root = root.next()
+//            }
+//        }
 
+        // recursion
+        // Here we wouldn't start to return from the recursive function until we'd gone through entire record
+        // If number of nodes was massive -> the call stack would overflow (error) before we'd been through it
+        // BinarySearch tree (SearchTree.java) would not have this problem
+        // It would return from recursive calls for each branch, rather than just one massive one
+        if (root != null) {
+            System.out.println("Current position = " + root.getValue());
+            traverse(root.next());
+        }
     }
 }
