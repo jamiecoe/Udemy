@@ -3,9 +3,9 @@ package com.jamiecoe;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class League<T extends Sport> {
+public class League<T extends Team> {
     private String name;
-    private ArrayList<Team<T>> leagueMembers = new ArrayList<>();
+    private ArrayList<T> leagueMembers = new ArrayList<>();
 
     public League(String name) {
         this.name = name;
@@ -15,7 +15,7 @@ public class League<T extends Sport> {
         return name;
     }
 
-    public void addTeam(Team<T> newTeam) {
+    public void addTeam(T newTeam) {
         leagueMembers.add(newTeam);
     }
 

@@ -3,8 +3,8 @@ package com.jamiecoe;
 public class Main {
 
     public static void main(String[] args) {
-	    League<Football> premiereLeague = new League<>("Premiere League");
-        League<Basketball> nba = new League<>("NBA");
+	    League<Team<Football>> premiereLeague = new League<>("Premiere League");
+        League<Team<Basketball>> nba = new League<>("NBA");
 
         Team<Football> arsenal = new Team<>("Arsenal", new Football());
         Team<Football> liverpool = new Team<>("Liverpool", new Football());
