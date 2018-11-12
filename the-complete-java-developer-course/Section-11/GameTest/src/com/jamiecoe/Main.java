@@ -1,4 +1,4 @@
-package com.jamiecoe.mypackage;
+package com.jamiecoe;
 
 import com.jamiecoe.game.Monster;
 import com.jamiecoe.game.Player;
@@ -75,4 +75,3 @@ public class Main {
         return values;
     }
 }
-
