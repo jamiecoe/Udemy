@@ -17,5 +17,11 @@ public class Main {
 
 	    password.isAllowedIn(pw);
 	    password.isAllowedIn(123);
+
+		System.out.println("Main method call");
+		StaticInitialisationBlockTest test = new StaticInitialisationBlockTest();
+
+		test.someMethod();
+		System.out.println("Owner is " + StaticInitialisationBlockTest.owner);
     }
 }
