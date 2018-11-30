@@ -9,37 +9,43 @@ public class Main {
     public static void main(String[] args) {
         Theatre theatre = new Theatre("Olympian", 8, 12);
         // This creates a shallow copy of theatre.seats List, they both point to same objects
-        List<Theatre.Seat> seatCopy = new ArrayList<>(theatre.seats);
+        List<Theatre.Seat> seatCopy = new ArrayList<>(theatre.getSeats());
         printList(seatCopy);
 
-        // However, we can reverse order of copy List, and order of original List won't be changed
-        // Remember they are seperate ArrayLists, but the objects in the List point to same place in memory
-        Collections.reverse(seatCopy);
+        /* Comparable and Comparator Lecture */
 
-        printList(seatCopy);
-        printList(theatre.seats);
 
-        Collections.shuffle(seatCopy);
-        printList(seatCopy);
 
-        Theatre.Seat minSeat = Collections.min(seatCopy);
-        Theatre.Seat maxSeat = Collections.max(seatCopy);
+        /* Collections List Methods Lecture */
 
-//        System.out.println(minSeat.getSeatNumber());
-//        System.out.println(maxSeat.getSeatNumber());
-
-        sortList(seatCopy);
-        System.out.println("Printing sorted seatCopy");
-        printList(seatCopy);
-
-        // This will not work!
-        // Here we are making a new Array List of Seats, and initialising it to same length as theatre.seats
-        // We then try and make a deep copy with Collections.copy, providing the destination object and source to copy from
-        // However, setting the size of an ArrayList only sets it's initial capacity, it doesn't actually create elements in those slots
-        List<Theatre.Seat> newList = new ArrayList<>(theatre.seats.size());
-        // in order for this to work, newList would have to already contain the same number of Seat objects as theatre.seats
-        // There's rarely a good use case for Collections.copy()
-//        Collections.copy(newList, theatre.seats);
+//        // However, we can reverse order of copy List, and order of original List won't be changed
+//        // Remember they are seperate ArrayLists, but the objects in the List point to same place in memory
+//        Collections.reverse(seatCopy);
+//
+//        printList(seatCopy);
+//        printList(theatre.getSeats());
+//
+//        Collections.shuffle(seatCopy);
+//        printList(seatCopy);
+//
+//        Theatre.Seat minSeat = Collections.min(seatCopy);
+//        Theatre.Seat maxSeat = Collections.max(seatCopy);
+//
+////        System.out.println(minSeat.getSeatNumber());
+////        System.out.println(maxSeat.getSeatNumber());
+//
+//        sortList(seatCopy);
+//        System.out.println("Printing sorted seatCopy");
+//        printList(seatCopy);
+//
+//        // This will not work!
+//        // Here we are making a new Array List of Seats, and initialising it to same length as theatre.seats
+//        // We then try and make a deep copy with Collections.copy, providing the destination object and source to copy from
+//        // However, setting the size of an ArrayList only sets it's initial capacity, it doesn't actually create elements in those slots
+////        List<Theatre.Seat> newList = new ArrayList<>(theatre.seats.size());
+//        // in order for this to work, newList would have to already contain the same number of Seat objects as theatre.seats
+//        // There's rarely a good use case for Collections.copy()
+////        Collections.copy(newList, theatre.seats);
 
 
     }
