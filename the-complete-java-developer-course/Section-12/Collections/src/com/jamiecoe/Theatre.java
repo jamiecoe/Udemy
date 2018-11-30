@@ -1,11 +1,12 @@
 package com.jamiecoe;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Theatre {
     private final String name;
-    private List<Seat> seats = new ArrayList<>();
+    public List<Seat> seats = new ArrayList<>();
 
     public Theatre(String name, int numRows, int seatsPerRow) {
         this.name = name;
@@ -27,20 +28,15 @@ public class Theatre {
     }
 
     public boolean reserveSeat(String seatNumber) {
-        Seat requestedSeat = null;
-        for (Seat seat: seats) {
-            if (seat.getSeatNumber().equals(seatNumber)) {
-                requestedSeat = seat;
-                break;
-            }
-        }
+        Seat requestedSeat = new Seat(seatNumber);
+        int foundSeat = Collections.binarySearch(seats, requestedSeat, null);
 
-        if (requestedSeat == null) {
-            System.out.println("There is no seat " + seatNumber);
+        if (foundSeat >= 0) {
+            return seats.get(foundSeat).reserve();
+        } else {
+            System.out.println(seatNumber + " is not available");
             return false;
         }
-
-        return requestedSeat.reserve();
     }
 
     // for testing
@@ -50,12 +46,17 @@ public class Theatre {
         }
     }
 
-    private class Seat {
+    public class Seat implements Comparable<Seat> {
         private final String seatNumber;
         private boolean reserved = false;
 
         public Seat(String seatNumber) {
             this.seatNumber = seatNumber;
+        }
+
+        @Override
+        public int compareTo(Seat seat) {
+            return this.seatNumber.compareToIgnoreCase(seat.getSeatNumber());
         }
 
         public boolean reserve() {
