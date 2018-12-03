@@ -1,13 +1,33 @@
 package com.jamiecoe;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Theatre {
     private final String name;
     private List<Seat> seats = new ArrayList<>();
+
+    // A Collection can also be sorted using a `Comparator`
+    // `Comparator` is an interface that requires you to define a compare method
+    // This can be used by Collections.sort()
+    // You can define multiple Comparator objects which allow you to sort in different ways
+    // Here we define a constant
+    static final Comparator<Seat> PRICE_ORDER;
+
+    // Then in a static block, we initialise it with an anonymous inner class
+    static {
+        PRICE_ORDER = new Comparator<Seat>() {
+            @Override
+            public int compare(Seat seat1, Seat seat2) {
+                if (seat1.getPrice() < seat2.getPrice()) {
+                    return -1;
+                } else if (seat1.getPrice() > seat2.getPrice()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        };
+    }
 
     public Theatre(String name, int numRows, int seatsPerRow) {
         this.name = name;
@@ -43,7 +63,7 @@ public class Theatre {
         if (foundSeat >= 0) {
             return seats.get(foundSeat).reserve();
         } else {
-            System.out.println(seatNumber + " is not available");
+            System.out.println(seatNumber + " does not exist");
             return false;
         }
     }

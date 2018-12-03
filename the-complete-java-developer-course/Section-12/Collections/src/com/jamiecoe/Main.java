@@ -8,15 +8,39 @@ public class Main {
 
     public static void main(String[] args) {
         Theatre theatre = new Theatre("Olympian", 8, 12);
-        // This creates a shallow copy of theatre.seats List, they both point to same objects
-        List<Theatre.Seat> seatCopy = new ArrayList<>(theatre.getSeats());
-        printList(seatCopy);
+
 
         /* Comparable and Comparator Lecture */
 
+        if (theatre.reserveSeat("A02")) {
+            System.out.println("Please pay for A02");
+        } else {
+            System.out.println("Seat already reserved");
+        }
 
+
+        if (theatre.reserveSeat("B13")) {
+            System.out.println("Please pay for B13");
+        } else {
+            System.out.println("Seat already reserved");
+        }
+
+        List<Theatre.Seat> reverseSeats = new ArrayList<>(theatre.getSeats());
+        Collections.reverse(reverseSeats);
+        printList(reverseSeats);
+
+        List<Theatre.Seat> priceSeats = new ArrayList<>(theatre.getSeats());
+        priceSeats.add(theatre.new Seat("B00", 13.00));
+        priceSeats.add(theatre.new Seat("A00", 13.00));
+        // Here we pass in List of seats and our Comparator which has a compare method using price
+        Collections.sort(priceSeats, Theatre.PRICE_ORDER);
+        printList(priceSeats);
 
         /* Collections List Methods Lecture */
+
+//        // This creates a shallow copy of theatre.seats List, they both point to same objects
+//        List<Theatre.Seat> seatCopy = new ArrayList<>(theatre.getSeats());
+//        printList(seatCopy);
 
 //        // However, we can reverse order of copy List, and order of original List won't be changed
 //        // Remember they are seperate ArrayLists, but the objects in the List point to same place in memory
@@ -52,7 +76,7 @@ public class Main {
 
     public static void printList(List<Theatre.Seat> list) {
         for (Theatre.Seat seat : list) {
-            System.out.println(" " + seat.getSeatNumber());
+            System.out.println(" " + seat.getSeatNumber() + " $" + seat.getPrice());
         }
 
         System.out.println();
