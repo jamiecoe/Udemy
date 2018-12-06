@@ -1,36 +1,46 @@
 package com.jamiecoe;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     private static Map<Integer, Location> locations = new HashMap<>();
 
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
 
-        locations.put(0, new Location(0, "In front on computer"));
-        locations.put(1, new Location(1, "End of road"));
-        locations.put(2, new Location(2, "Top of hill"));
-        locations.put(3, new Location(3, "Inside a building"));
-        locations.put(4, new Location(4, "In a valley"));
-        locations.put(5, new Location(5, "In a forest"));
+        locations.put(0, new Location(0, "In front on computer", new HashMap<>()));
 
-        locations.get(1).addExit("W", 2);
-        locations.get(1).addExit("E", 3);
-        locations.get(1).addExit("S", 4);
-        locations.get(1).addExit("N", 5);
+        Map<String, Integer> tempExit = new HashMap<>();
 
-        locations.get(2).addExit("N", 5);
+        tempExit.put("W", 2);
+        tempExit.put("E", 3);
+        tempExit.put("S", 4);
+        tempExit.put("N", 5);
 
-        locations.get(3).addExit("W", 1);
+        locations.put(1, new Location(1, "End of road", tempExit));
 
-        locations.get(4).addExit("N", 1);
-        locations.get(4).addExit("W", 2);
+        tempExit = new HashMap<>();
+        tempExit.put("N", 5);
 
-        locations.get(5).addExit("S", 1);
-        locations.get(5).addExit("W", 2);
+        locations.put(2, new Location(2, "Top of hill", tempExit));
+
+        tempExit = new HashMap<>();
+        tempExit.put("W", 1);
+
+        locations.put(3, new Location(3, "Inside a building", tempExit));
+
+        tempExit = new HashMap<>();
+        tempExit.put("N", 1);
+        tempExit.put("W", 2);
+
+        locations.put(4, new Location(4, "In a valley", tempExit));
+
+        tempExit = new HashMap<>();
+        tempExit.put("S", 1);
+        tempExit.put("W", 2);
+
+        locations.put(5, new Location(5, "In a forest", tempExit));
 
         int loc = 1;
 
@@ -47,7 +57,9 @@ public class Main {
             }
             System.out.println();
 
-            String direction = scanner.nextLine().toUpperCase();
+            String userInput = scanner.nextLine().toUpperCase();
+
+            String direction = getDirection(userInput);
 
             if (exits.containsKey(direction)) {
                 loc = exits.get(direction);
@@ -56,5 +68,23 @@ public class Main {
                 System.out.println("You cannot go in that direction");
             }
         }
+    }
+
+    public static String getDirection(String userInput) {
+        String[] splitWords = userInput.split(" ");
+
+        ArrayList<String> acceptedDirections = new ArrayList<>();
+        acceptedDirections.add("NORTH");
+        acceptedDirections.add("EAST");
+        acceptedDirections.add("SOUTH");
+        acceptedDirections.add("WEST");
+
+        for (String word : splitWords) {
+            if (acceptedDirections.contains(word)) {
+                return String.valueOf(word.charAt(0));
+            }
+        }
+
+        return String.valueOf(splitWords[0].charAt(0));
     }
 }
