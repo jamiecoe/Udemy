@@ -9,7 +9,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        locations.put(0, new Location(0, "In front on computer", new HashMap<>()));
+        locations.put(0, new Location(0, "In front on computer", null));
 
         Map<String, Integer> tempExit = new HashMap<>();
 
@@ -46,6 +46,7 @@ public class Main {
 
         while (true) {
             System.out.println(locations.get(loc).getDescription());
+
             if (loc == 0) {
                 break;
             }

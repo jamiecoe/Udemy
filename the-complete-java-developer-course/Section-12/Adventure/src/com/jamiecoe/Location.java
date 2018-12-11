@@ -11,7 +11,7 @@ public class Location {
     public Location(int locationID, String description, Map<String, Integer> exits) {
         this.locationID = locationID;
         this.description = description;
-        this.exits = exits;
+        this.exits = exits != null ? new HashMap<>(exits) : new HashMap<>();
         this.exits.put("Q", 0);
     }
 
