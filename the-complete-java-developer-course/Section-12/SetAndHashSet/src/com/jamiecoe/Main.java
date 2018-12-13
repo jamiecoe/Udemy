@@ -106,5 +106,17 @@ public class Main {
         for(HeavenlyBody moon : moons) {
             System.out.println("\t" + moon.getName());
         }
+
+        // Lets say we try to add a duplicate of Pluto with a different orbital period
+        HeavenlyBody pluto = new HeavenlyBody("Pluto", 842);
+        planets.add(pluto);
+
+        // When we print them out, we will see Pluto in the Set twice (which seems wrong!?)
+        // However, because the two objects do not compare equal, our Set is happy to accept both
+        // We'll need to override the equals() and hashCode() method in our HeavenlyBody class
+        System.out.println("Planets");
+        for(HeavenlyBody planet : planets) {
+            System.out.println("\t" + planet.getName());
+        }
     }
 }

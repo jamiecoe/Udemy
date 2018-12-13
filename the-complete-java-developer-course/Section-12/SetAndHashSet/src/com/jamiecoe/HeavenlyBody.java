@@ -29,4 +29,28 @@ public final class HeavenlyBody {
     public Set<HeavenlyBody> getSatellites() {
         return new HashSet<>(this.satellites);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj) {
+            return true;
+        }
+
+        System.out.println("obj.getClass() = " + obj.getClass());
+        System.out.println("this.getClass() = " + this.getClass());
+        if ((obj == null) || (obj.getClass() != this.getClass())) {
+            return false;
+        }
+
+        String objName = ((HeavenlyBody) obj).getName();
+        return this.name.equals(objName);
+    }
+
+    // hashCode() is used to decide which bucket a Set entry is added to
+    @Override
+    public int hashCode() {
+        System.out.println("hashcode called");
+        // we add 57 to hashcode so that the hashcode of (String)"Pluto" doesn't equal (HeavenlyBody) `pluto`
+        return this.name.hashCode() + 57;
+    }
 }
