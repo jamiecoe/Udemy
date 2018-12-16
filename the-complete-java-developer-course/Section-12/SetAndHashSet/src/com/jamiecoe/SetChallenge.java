@@ -15,8 +15,10 @@ public class SetChallenge {
         Planet mars = new Planet("Mars", 687);
         Planet fakeMars = new Planet("Mars", 0);
         Planet fakeSun = new Planet("Sun", 0);
+
         Moon moon = new Moon("Moon", 27);
         Moon deimos = new Moon("Deimos", 1.3);
+
         Star sun = new Star("Sun", 3456);
 
         earth.addSatellite(moon);
