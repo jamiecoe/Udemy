@@ -37,6 +37,10 @@ public abstract class HeavenlyBody {
         return new HashSet<>(this.satellites);
     }
 
+    public static Key makeKey(String name, BodyTypes bodyTypes) {
+        return new Key(name, bodyTypes);
+    }
+
     // Making the method final means it can be overridden by subclass
     // This way equals will be symmetric
     @Override
@@ -59,7 +63,7 @@ public abstract class HeavenlyBody {
         // we add 57 to hashcode so that the hashcode of (String)"Pluto" doesn't equal (HeavenlyBody) `pluto`
 //        return this.name.hashCode() + 57;
 
-        return this.key.hashcode();
+        return this.key.hashCode();
     }
 
     public static final class Key {

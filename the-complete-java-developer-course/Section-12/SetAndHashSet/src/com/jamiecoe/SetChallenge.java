@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class SetChallenge {
-    private static Map<HeavenlyBody, String> solarSystem = new HashMap<>();
+    private static Map<HeavenlyBody.Key, HeavenlyBody> solarSystem = new HashMap<>();
     private static Set<HeavenlyBody> planets = new HashSet<>();
 
     public static void main(String[] args) {
@@ -31,27 +31,28 @@ public class SetChallenge {
         planets.add(fakeSun);
         planets.add(fakeMars);
 
-        solarSystem.put(earth, earth.getName());
-        solarSystem.put(mercury, mercury.getName());
-        solarSystem.put(mars, mars.getName());
-        solarSystem.put(moon, moon.getName());
-        solarSystem.put(deimos, deimos.getName());
-        solarSystem.put(sun, sun.getName());
+        solarSystem.put(earth.getKey(), earth);
+        solarSystem.put(mercury.getKey(), mercury);
+        solarSystem.put(mars.getKey(), mars);
+        solarSystem.put(moon.getKey(), moon);
+        solarSystem.put(deimos.getKey(), deimos);
+        solarSystem.put(sun.getKey(), sun);
 
-        solarSystem.put(fakeSun, fakeSun.getName());
-        solarSystem.put(fakeMars, "Mars");
+        solarSystem.put(fakeSun.getKey(), fakeSun);
+        solarSystem.put(fakeMars.getKey(), fakeMars);
 
         printPlanets(planets);
         printSolarSystem(solarSystem);
     }
 
-    private static void printSolarSystem(Map<HeavenlyBody, String> solarSystem) {
+    private static void printSolarSystem(Map<HeavenlyBody.Key, HeavenlyBody> solarSystem) {
         System.out.println("SOLAR SYSTEM");
-        Set<HeavenlyBody> solarSystemBodies = solarSystem.keySet();
+        Set<HeavenlyBody.Key> solarSystemBodies = solarSystem.keySet();
 
-        for (HeavenlyBody heavenlyBody :
+        for (HeavenlyBody.Key heavenlyBodyKey :
                 solarSystemBodies) {
-            System.out.println("\t" + heavenlyBody.getName() + " " + heavenlyBody.getOrbitalPeriod());
+            HeavenlyBody heavenlyBody = solarSystem.get(heavenlyBodyKey);
+            System.out.println("\t" + heavenlyBody.getKey().getName() + " " + heavenlyBody.getOrbitalPeriod() + " " + heavenlyBody.getKey().getBodyTypes());
         }
     }
 
@@ -59,7 +60,7 @@ public class SetChallenge {
         System.out.println("PLANETS");
         for (HeavenlyBody planet :
                 planets) {
-            System.out.println("\t" + planet.getName() + " " + planet.getOrbitalPeriod());
+            System.out.println("\t" + planet.getKey().getName() + " " + planet.getOrbitalPeriod());
         }
     }
 }
