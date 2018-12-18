@@ -46,8 +46,20 @@ public class StockList {
         return list.get(key);
     }
 
+    public Map<String, Double> getPriceList() {
+        Map<String, Double> prices = new LinkedHashMap<>();
+        for (Map.Entry<String, StockItem> item: this.list.entrySet()) {
+            prices.put(item.getKey(), item.getValue().getPrice());
+        }
+
+        return Collections.unmodifiableMap(prices);
+    }
+
     public Map<String, StockItem> getItems() {
         // Stops anyone editing the list outside this class
+        // if they try to, the program will throw an error
+        // Remember that it is only the Collection which is unmodifiable
+        // The objects inside the collection can be accessed and modified
         return Collections.unmodifiableMap(list);
     }
 
