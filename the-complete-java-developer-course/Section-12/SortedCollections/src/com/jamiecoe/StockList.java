@@ -33,9 +33,26 @@ public class StockList {
 
     public int sellStock(String item, int quantity) {
         StockItem inStock = list.getOrDefault(item, null);
+        int availableStock = inStock.quantityInStock() - inStock.quantityReserved();
 
-        if ((inStock != null) && (inStock.quantityInStock() >= quantity) && (quantity > 0)) {
-            inStock.adjustStock(-quantity);
+        if (
+            (inStock != null) &&
+            (availableStock >= quantity) &&
+            (quantity > 0)
+        ) {
+            inStock.adjustReserveStock(quantity);
+            return quantity;
+        }
+
+        return 0;
+    }
+
+    public int returnStock(String item, int quantity) {
+        StockItem inStock = list.getOrDefault(item, null);
+        int reservedQuantity = inStock.quantityReserved() - quantity;
+
+        if ((inStock != null) && (reservedQuantity >= 0)) {
+            inStock.adjustReserveStock(-quantity);
             return quantity;
         }
 
@@ -48,7 +65,7 @@ public class StockList {
 
     public Map<String, Double> getPriceList() {
         Map<String, Double> prices = new LinkedHashMap<>();
-        for (Map.Entry<String, StockItem> item: this.list.entrySet()) {
+        for (Map.Entry<String, StockItem> item : this.list.entrySet()) {
             prices.put(item.getKey(), item.getValue().getPrice());
         }
 
@@ -67,11 +84,14 @@ public class StockList {
     public String toString() {
         String s = "\nStock List\n";
         double totalCost = 0.0;
-        for (Map.Entry<String, StockItem> item: list.entrySet()){
+        for (Map.Entry<String, StockItem> item : list.entrySet()) {
             StockItem stockItem = item.getValue();
             double itemValue = stockItem.getPrice() * stockItem.quantityInStock();
 
-            s += stockItem + ". There are " + stockItem.quantityInStock() + " in stock. Vlaue of item: ";
+            s += stockItem + ". There are " + stockItem.quantityInStock() + " in stock. There are "
+                    + stockItem.quantityReserved()
+                    + " reserved. Value of item: ";
+
             // We'll format value so it's to 2 decimal places and f means its a floating number
             s += String.format("%.2f", itemValue) + "\n";
             totalCost += itemValue;

@@ -25,8 +25,38 @@ public class Basket {
         return 0;
     }
 
+    public boolean removeFromBasket(StockItem item, int quantity) {
+        if ((item != null) && (quantity > 0)) {
+            int inBasket = basketList.getOrDefault(item, 0);
+            int leftOverAmount = inBasket - quantity;
+            if (leftOverAmount > 0) {
+                basketList.put(item, leftOverAmount);
+                return true;
+            } else if (leftOverAmount == 0) {
+                basketList.remove(item);
+                return true;
+            }
+
+            return false;
+        }
+
+        return false;
+    }
+
     public Map<StockItem, Integer> getItems() {
         return Collections.unmodifiableMap(basketList);
+    }
+
+    public void checkoutBasket() {
+        for(Map.Entry<StockItem, Integer> item: basketList.entrySet()) {
+            StockItem stockItem = item.getKey();
+            int reservedQuantity = item.getValue();
+
+            stockItem.adjustStock(-reservedQuantity);
+            stockItem.adjustReserveStock(-reservedQuantity);
+
+            basketList.remove(stockItem, reservedQuantity);
+        }
     }
 
     @Override
