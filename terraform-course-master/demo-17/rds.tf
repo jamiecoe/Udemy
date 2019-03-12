@@ -21,7 +21,7 @@ resource "aws_db_instance" "mariadb" {
   allocated_storage    = 100    # 100 GB of storage, gives us more IOPS than a lower number
   engine               = "mariadb"
   engine_version       = "10.1.14"
-  instance_class       = "db.t2.small"    # use micro if you want to use the free tier
+  instance_class       = "db.t2.micro"    # use micro if you want to use the free tier
   identifier           = "mariadb"
   name                 = "mydatabase" # database name
   username             = "root"   # username
