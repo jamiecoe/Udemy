@@ -16,7 +16,11 @@
 // }
 
 function palindrome(str) {
-  return str.split('').every((letter, index, array) => letter === array[(array.length - 1) - index])
+  return str.replace(/\s|[^\w]/g, '')
+            .split('')
+            .every((letter, index, array) => 
+              letter === array[(array.length - 1) - index]
+            )
 }
 
 module.exports = palindrome;

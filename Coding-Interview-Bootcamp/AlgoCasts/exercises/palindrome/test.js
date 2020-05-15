@@ -5,7 +5,7 @@ test('palindrome function is defined', () => {
 });
 
 test('"aba" is a palindrome', () => {
-  expect(palindrome('aba')).toBeTruthy();
+  expect(palindrome('I did, did I?')).toBeTruthy();
 });
 
 test('" aba" is not a palindrome', () => {

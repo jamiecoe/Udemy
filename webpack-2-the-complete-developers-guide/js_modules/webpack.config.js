@@ -9,7 +9,7 @@ const config = {
   output: {
     // output file path must be absolute
     // path.resolve() creates a filepath suitable for OSX / Windows / Linux
-    // Webpack will create /build directory for you
+    // Webpack will mcreate /build directory for you
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
     // specifies the public path
