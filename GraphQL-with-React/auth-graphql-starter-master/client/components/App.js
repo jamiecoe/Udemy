@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 
-import Header from './Header'
+import Header from "./Header";
 
 export default function App(props) {
   return (
-    <div>
+    <div className="container">
       <Header />
       {props.children}
     </div>
-  )
+  );
 }
