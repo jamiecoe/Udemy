@@ -30,6 +30,9 @@ build/Release
 build
 dist
 
+# SQLite DB
+db.sqlite
+
 # Dependency directories
 node_modules
 jspm_packages
